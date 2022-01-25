@@ -1,0 +1,6 @@
+/*
+!/.gitignore
+!/README*
+!/config.m4
+!/php_crypt_gensalt.c
+!/php_crypt_gensalt.h
