@@ -4,6 +4,7 @@
 
 #include <php.h>
 #include <crypt.h>
+#include <string.h>
 #include "php_crypt_gensalt.h"
 
 zend_function_entry crypt_gensalt_functions[] = {
@@ -38,7 +39,7 @@ PHP_FUNCTION(crypt_gensalt) {
 	size_t rbytes_len = 0;
 
 	if(zend_parse_parameters(ZEND_NUM_ARGS(), "s!l|s!", &prefix_get, &prefix_len, &count_get, &rbytes_get, &rbytes_len) == FAILURE){
-		return;
+		RETURN_NULL();
 	}
 
 	prefix = prefix_get;
@@ -46,7 +47,11 @@ PHP_FUNCTION(crypt_gensalt) {
 	rbytes = rbytes_get;
 	nrbytes = rbytes_len;
 
-	const char* setting = strdup(crypt_gensalt(prefix, count, rbytes, nrbytes));
+	const char* setting = (setting = crypt_gensalt(prefix, count, rbytes, nrbytes)) ? strdup(setting) : NULL;
 	//php_printf(setting);
-	RETURN_STRING(setting);
+	if(setting){
+		RETURN_STRING(setting);
+	}else{
+		RETURN_NULL();
+	}
 }
