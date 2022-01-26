@@ -37,7 +37,7 @@ PHP_FUNCTION(crypt_gensalt) {
 	char* rbytes_get = NULL;
 	size_t rbytes_len = 0;
 
-	if(zend_parse_parameters(ZEND_NUM_ARGS(), "s!l|s!l", &prefix_get, &prefix_len, &count_get, &rbytes_get, &rbytes_len) == FAILURE){
+	if(zend_parse_parameters(ZEND_NUM_ARGS(), "s!l|s!", &prefix_get, &prefix_len, &count_get, &rbytes_get, &rbytes_len) == FAILURE){
 		return;
 	}
 
