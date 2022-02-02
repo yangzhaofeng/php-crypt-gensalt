@@ -21,5 +21,6 @@ First you need to load `crypt_gensalt.so`. You can use `dl()` (not safe) or `ext
 It can be called like
 ```
 crypt_gensalt(string $prefix, int $count, string $rbytes): string
+system_crypt(string $phrase, string $setting): string
 ```
 The `rbytes` parameter is optional. Theoretically, all parameters can be optional, and there should be 4 parameters (`char *crypt_gensalt(const char *prefix, unsigned long count, const char *rbytes, int nrbytes)`). This is alpha version so they can be changed.
